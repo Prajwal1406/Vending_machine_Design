@@ -1,3 +1,4 @@
+// Code your design here
 module main_fsm (
   input wire clk,
   input wire rstn,
@@ -38,7 +39,7 @@ module main_fsm (
       if(current_state == STATE_IDLE && sync_item_select_valid) begin 
       	selected_item_reg <= sync_item_select;
       end
-      if(sync_currency_valid) begin
+      if(sync_currency_valid) begin//
         current_credit <= current_credit + sync_currency_value;
       end
     end
@@ -63,7 +64,7 @@ module main_fsm (
       end
       STATE_WAIT_FOR_MONEY: begin
         if(current_credit >= item_cost) begin
-          next_state = STATE_DISPENSE;
+          next_state = STATE_DISPENSE;//add else block
         end
       end
       STATE_DISPENSE: begin
@@ -73,7 +74,7 @@ module main_fsm (
         cfg_item_update_req = 1'b1;
         next_state = STATE_RETURN_CHANGE;
       end
-      STATE_RETURN_CHANGE: begin
+      STATE_RETURN_CHANGE: begin//this is redundant add some logic to make it work without this state
         next_state= STATE_IDLE;
         current_credit = 16'b0;
       end
