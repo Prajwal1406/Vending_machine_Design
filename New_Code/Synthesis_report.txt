@@ -1,0 +1,489 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Sep 24 01:42:19 2025
+# Process ID: 19024
+# Current directory: C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.runs/synth_1
+# Command line: vivado.exe -log vending_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vending_top.tcl
+# Log file: C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.runs/synth_1/vending_top.vds
+# Journal file: C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source vending_top.tcl -notrace
+Command: synth_design -top vending_top -part xc7z020clg484-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 7812 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 514.301 ; gain = 187.719
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'vending_top' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/vending_top.v:1]
+	Parameter MAX_ITEMS bound to: 1024 - type: integer 
+	Parameter MAX_NOTE_VAL bound to: 100 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'input_cdc' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/input_cdc.v:28]
+	Parameter MAX_NOTE_VAL bound to: 100 - type: integer 
+	Parameter MAX_ITEMS bound to: 1024 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'pulse_sync' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/input_cdc.v:1]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'pulse_sync' (1#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/input_cdc.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'input_cdc' (2#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/input_cdc.v:28]
+INFO: [Synth 8-6157] synthesizing module 'main_fsm' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:1]
+	Parameter MAX_ITEMS bound to: 1024 - type: integer 
+	Parameter MAX_NOTE_VAL bound to: 100 - type: integer 
+	Parameter STATE_IDLE bound to: 2'b00 
+	Parameter STATE_WAIT_FOR_MONEY bound to: 2'b01 
+	Parameter STATE_DISPENSE bound to: 2'b10 
+	Parameter STATE_EMPTY bound to: 2'b11 
+INFO: [Synth 8-226] default block is never used [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:111]
+WARNING: [Synth 8-6090] variable 'item_dispense_valid' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:118]
+WARNING: [Synth 8-6090] variable 'item_dispense' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:119]
+WARNING: [Synth 8-6090] variable 'currency_change' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'main_fsm' (3#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'item_memory' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/item_memory.v:1]
+	Parameter MAX_ITEMS bound to: 1024 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+WARNING: [Synth 8-5788] Register item_memory_reg in module item_memory is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'item_memory_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM "item_memory_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'item_memory' (4#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/item_memory.v:1]
+INFO: [Synth 8-6157] synthesizing module 'apb_cdc' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/new/apb_cdc.v:1]
+	Parameter MAX_ITEMS bound to: 1024 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element fast_mem_addr_reg was removed.  [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/new/apb_cdc.v:108]
+WARNING: [Synth 8-6014] Unused sequential element fast_mem_wdata_reg was removed.  [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/new/apb_cdc.v:109]
+INFO: [Synth 8-6155] done synthesizing module 'apb_cdc' (5#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/new/apb_cdc.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'vending_top' (6#1) [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/vending_top.v:1]
+WARNING: [Synth 8-3331] design apb_cdc has unconnected port cfg_mode
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 737.812 ; gain = 411.230
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 737.812 ; gain = 411.230
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 737.812 ; gain = 411.230
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'main_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              STATE_IDLE |                               00 |                               00
+    STATE_WAIT_FOR_MONEY |                               01 |                               01
+             STATE_EMPTY |                               10 |                               11
+          STATE_DISPENSE |                               11 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'main_fsm'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:46 ; elapsed = 00:00:53 . Memory (MB): peak = 1006.402 ; gain = 679.820
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------------+------------+----------+
+|      |RTL Partition             |Replication |Instances |
++------+--------------------------+------------+----------+
+|1     |muxpart__3078_item_memory |           1|     32736|
+|2     |item_memory__GB1          |           1|      8569|
+|3     |muxpart__3080_item_memory |           1|     32736|
+|4     |item_memory__GB3          |           1|     28725|
+|5     |muxpart__3083_item_memory |           1|     32736|
+|6     |item_memory__GB5          |           1|     33199|
+|7     |item_memory__GB6          |           1|     30318|
+|8     |item_memory__GB7          |           1|     29708|
+|9     |item_memory__GB8          |           1|     37022|
+|10    |item_memory__GB9          |           1|     35125|
+|11    |vending_top__GC0          |           1|      1332|
++------+--------------------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 2     
+	   3 Input      8 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1031  
+	               16 Bit    Registers := 2     
+	               10 Bit    Registers := 6     
+	                8 Bit    Registers := 4     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 21    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1028  
+	   3 Input     32 Bit        Muxes := 1     
+	   4 Input     10 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 4     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 4     
+	   4 Input      2 Bit        Muxes := 2     
+	   9 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1049  
+	   3 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module item_memory 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1025  
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1027  
+	   3 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1034  
+Module pulse_sync__1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 3     
+Module pulse_sync 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 3     
+Module input_cdc 
+Detailed RTL Component Info : 
++---Registers : 
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
+Module main_fsm 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      8 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   4 Input     10 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 4     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 4     
+	   4 Input      2 Bit        Muxes := 2     
+	   9 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+	   3 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 2     
+Module apb_cdc 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 6     
+	               10 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 7     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 11    
+	   5 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[0]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[0]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[1]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[2]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[2]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[3]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[3]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[4]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[4]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[5]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[5]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[6]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[6]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[7]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[7]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[8]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[8]'
+INFO: [Synth 8-3886] merging instance 'i_0/u_fsm/selected_item_reg_reg[9]' (FDCE) to 'i_0/u_fsm/mem_read_addr_reg[9]'
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_en_reg/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:52]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:52]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:52]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[9]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[8]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[7]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[6]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[5]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[4]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[3]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[2]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[1]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'i_0/u_fsm/mem_update_addr_reg[0]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:53]
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:42 ; elapsed = 00:02:16 . Memory (MB): peak = 1013.512 ; gain = 686.930
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------------+------------+----------+
+|      |RTL Partition             |Replication |Instances |
++------+--------------------------+------------+----------+
+|1     |muxpart__3078_item_memory |           1|     32736|
+|2     |item_memory__GB1          |           1|      4110|
+|3     |muxpart__3080_item_memory |           1|     32736|
+|4     |item_memory__GB3          |           1|     13984|
+|5     |muxpart__3083_item_memory |           1|     32736|
+|6     |item_memory__GB5          |           1|     27744|
+|7     |item_memory__GB6          |           1|     13908|
+|8     |item_memory__GB7          |           1|     12982|
+|9     |item_memory__GB8          |           1|     12387|
+|10    |item_memory__GB9          |           1|     14490|
+|11    |vending_top__GC0          |           1|       688|
++------+--------------------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:45 ; elapsed = 00:02:19 . Memory (MB): peak = 1016.238 ; gain = 689.656
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------------+------------+----------+
+|      |RTL Partition             |Replication |Instances |
++------+--------------------------+------------+----------+
+|1     |item_memory__GB1          |           1|      4110|
+|2     |muxpart__3080_item_memory |           1|     32736|
+|3     |item_memory__GB3          |           1|     13935|
+|4     |muxpart__3083_item_memory |           1|     32736|
+|5     |item_memory__GB5          |           1|     27270|
+|6     |item_memory__GB6          |           1|     13698|
+|7     |item_memory__GB7          |           1|     12708|
+|8     |item_memory__GB8          |           1|     11599|
+|9     |item_memory__GB9          |           1|     14097|
+|10    |vending_top__GC0          |           1|       688|
++------+--------------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:58 ; elapsed = 00:02:35 . Memory (MB): peak = 1017.566 ; gain = 690.984
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------------------+------------+----------+
+|      |RTL Partition             |Replication |Instances |
++------+--------------------------+------------+----------+
+|1     |item_memory__GB1          |           1|      3950|
+|2     |muxpart__3080_item_memory |           1|     15264|
+|3     |item_memory__GB3          |           1|     13477|
+|4     |muxpart__3083_item_memory |           1|     15264|
+|5     |item_memory__GB5          |           1|     13957|
+|6     |item_memory__GB6          |           1|     12800|
+|7     |item_memory__GB7          |           1|     11712|
+|8     |item_memory__GB8          |           1|      9743|
+|9     |item_memory__GB9          |           1|     12958|
+|10    |vending_top__GC0          |           1|       498|
++------+--------------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:25 ; elapsed = 00:03:06 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_valid_OBUF with 1st driver pin 'i_77123/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_valid_OBUF with 2nd driver pin 'u_fsm/item_dispense_valid_reg/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:60]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 1st driver pin 'u_fsm/item_dispense_reg[0]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 2nd driver pin 'u_fsm/item_dispense_reg[1]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 3rd driver pin 'u_fsm/item_dispense_reg[2]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 4th driver pin 'u_fsm/item_dispense_reg[3]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 5th driver pin 'u_fsm/item_dispense_reg[4]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 6th driver pin 'u_fsm/item_dispense_reg[5]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 7th driver pin 'u_fsm/item_dispense_reg[6]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 8th driver pin 'u_fsm/item_dispense_reg[7]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 9th driver pin 'u_fsm/item_dispense_reg[8]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 10th driver pin 'u_fsm/item_dispense_reg[9]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:61]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin item_dispense_OBUF[0] with 11th driver pin 'i_76962/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[7] with 1st driver pin 'i_77122/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[7] with 2nd driver pin 'u_fsm/currency_change_reg[7]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[6] with 1st driver pin 'i_77121/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[6] with 2nd driver pin 'u_fsm/currency_change_reg[6]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[5] with 1st driver pin 'i_77120/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[5] with 2nd driver pin 'u_fsm/currency_change_reg[5]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[4] with 1st driver pin 'i_77119/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[4] with 2nd driver pin 'u_fsm/currency_change_reg[4]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[3] with 1st driver pin 'i_77118/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[3] with 2nd driver pin 'u_fsm/currency_change_reg[3]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[2] with 1st driver pin 'i_77117/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[2] with 2nd driver pin 'u_fsm/currency_change_reg[2]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[1] with 1st driver pin 'i_77116/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[1] with 2nd driver pin 'u_fsm/currency_change_reg[1]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[0] with 1st driver pin 'i_77115/O' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:45]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin currency_change_OBUF[0] with 2nd driver pin 'u_fsm/currency_change_reg[0]/Q' [C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.srcs/sources_1/imports/Downloads/main_fsm.v:62]
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|       10|Failed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:26 ; elapsed = 00:03:06 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:30 ; elapsed = 00:03:10 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:30 ; elapsed = 00:03:10 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:37 ; elapsed = 00:03:18 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:38 ; elapsed = 00:03:18 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUF    |     1|
+|2     |BUFG   |     2|
+|3     |CARRY4 |    10|
+|4     |LUT1   |     2|
+|5     |LUT2   |   535|
+|6     |LUT3   |  3554|
+|7     |LUT4   |  2369|
+|8     |LUT5   |  6127|
+|9     |LUT6   | 46578|
+|10    |MUXF7  | 11968|
+|11    |MUXF8  |  5984|
+|12    |FDCE   |   730|
+|13    |FDRE   | 33075|
+|14    |IBUF   |    73|
+|15    |OBUF   |    52|
++------+-------+------+
+
+Report Instance Areas: 
++------+----------------+-------------+-------+
+|      |Instance        |Module       |Cells  |
++------+----------------+-------------+-------+
+|1     |top             |             | 111060|
+|2     |  u_apb_cdc     |apb_cdc      |  35574|
+|3     |  u_fsm         |main_fsm     |    229|
+|4     |  u_input_cdc   |input_cdc    |     39|
+|5     |    u1          |pulse_sync   |      4|
+|6     |    u2          |pulse_sync_0 |      4|
+|7     |  u_item_memory |item_memory  |  75090|
++------+----------------+-------------+-------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:38 ; elapsed = 00:03:18 . Memory (MB): peak = 1052.293 ; gain = 725.711
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 62 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:38 ; elapsed = 00:03:20 . Memory (MB): peak = 1052.293 ; gain = 725.711
+Synthesis Optimization Complete : Time (s): cpu = 00:02:38 ; elapsed = 00:03:20 . Memory (MB): peak = 1052.293 ; gain = 725.711
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 17963 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1236.137 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUF => LUT1: 1 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+35 Infos, 8 Warnings, 62 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:54 ; elapsed = 00:03:40 . Memory (MB): peak = 1236.137 ; gain = 934.445
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1236.137 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Joo/Desktop/Sure/Vending_machine/cdc_test/cdc_test.runs/synth_1/vending_top.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1236.137 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_utilization -file vending_top_utilization_synth.rpt -pb vending_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Sep 24 01:46:27 2025...
