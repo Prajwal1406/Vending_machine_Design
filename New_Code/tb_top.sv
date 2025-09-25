@@ -148,8 +148,9 @@ begin
   pwrite = 1'b0;
   pwdata = 'h0;
   @(negedge clk);
-    wait (pready == 1);
-  rd_data = prdata;
+    wait(pready == 1);
+    repeat (2) @(negedge clk);  // for stabilizing data
+    rd_data = prdata;
   if (chk && (prdata !== chk_data)) begin
     $error("Expected Data = %0x Actual data = %0x", chk_data, prdata);
   end 
