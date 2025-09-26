@@ -1,6 +1,6 @@
 # FPGA Vending Machine Controller
 
-![Vending Machine Controller Block Diagram](images/style image.png)
+![Vending Machine Controller Block Diagram](images/styleimage.png)
 
 A dual-clock domain FPGA design for a vending machine controller featuring an APB configuration interface, clock domain crossing (CDC) synchronizers, and a finite state machine (FSM) for transaction management.
 
