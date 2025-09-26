@@ -28,6 +28,29 @@ Clock domain crossing is ensured using dedicated CDC synchronizers and handshake
 
 <p align="center"><em>High-level architecture showing APB interface, CDC bridges, FSM, and memory modules.</em></p>
 
+## FSM Transaction Flow
+
+The core vending logic, implemented in `main_fsm.v`, follows this transaction sequence:
+
+1.  **[IDLE]**
+    * **Item Selected** → **[REQUEST ITEM INFO]**
+        * Item Info Valid?
+            * No → Return to **[IDLE]**
+            * Yes → **[WAIT FOR MONEY]**
+
+2.  **[WAIT FOR MONEY]**
+    * Money Inserted (Credit accumulated)
+    * Enough Money?
+        * No → Stay in **[WAIT FOR MONEY]**
+        * Yes → **Item Available?**
+            * No → Return Change → **[IDLE]**
+            * Yes → **[DISPENSE]**
+
+3.  **[DISPENSE]**
+    * Dispense Item
+    * Return Change
+    * Transition → **[IDLE]** (Transaction complete)
+
 ## Module Overview
 - **`vending_top.v`** : Top-level integration of all modules coordinating inputs, FSM, memory, and APB interface.
 - **`main_fsm.v`** : Implements the finite state machine managing vending transactions and dispensing logic.
