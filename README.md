@@ -21,11 +21,4 @@ A dual-clock domain FPGA design for a vending machine controller featuring an AP
 
 Clone the repository:
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-Created by [Your Name] - feel free to reach out for questions or collaborations.
 
