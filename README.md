@@ -22,7 +22,11 @@ The design uses two clock domains:
 Clock domain crossing is ensured using dedicated CDC synchronizers and handshake mechanisms to safely transfer signals and data between these asynchronous domains.
 
 ## High-Level Block Diagram
-![Vending Machine Controller Block Diagram](images/blockdiagram.png)
+<p align="center">
+  <img src="images/blockdiagram.png" alt="Vending Machine Controller Block Diagram" width="600"/>
+</p>
+
+<p align="center"><em>High-level architecture showing APB interface, CDC bridges, FSM, and memory modules.</em></p>
 
 ## Module Overview
 - **`vending_top.v`** : Top-level integration of all modules coordinating inputs, FSM, memory, and APB interface.
