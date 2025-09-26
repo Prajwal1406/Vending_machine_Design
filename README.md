@@ -34,15 +34,15 @@ Clock domain crossing is ensured using dedicated CDC synchronizers and handshake
 
 <p align="center">
   <a href="images/Vending machine blocks.pdf" target="_blank">
-    <img src="images/crackerjacks_preview.png" alt="Crackerjacks PDF Preview" width="300"/>
+    <img src="images/blockdiagram1.png" alt="High-Level Block Diagram" width="300"/>
   </a>
   <br/>
-  <em>Click to view Crackerjacks design insights (PDF)</em>
+  <em>Click to view High-Level Block Diagram (PDF)</em>
 </p>
 
 <p align="center">
   <a href="images/10 cycles below .pdf" target="_blank">
-    <img src="images/texting_preview.png" alt="Texting While Kids PDF Preview" width="300"/>
+    <img src="images/below10cycles.png" alt="10-Cycle Constraint Surpassed: Operation Completed in 45ns" width="300"/>
   </a>
   <br/>
   <em>Click to view behavioral analysis and timing notes (PDF)</em>
