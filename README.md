@@ -22,11 +22,25 @@ The design uses two clock domains:
 Clock domain crossing is ensured using dedicated CDC synchronizers and handshake mechanisms to safely transfer signals and data between these asynchronous domains.
 
 ## High-Level Block Diagram
+
+## Additional Documentation
+
 <p align="center">
-  <img src="images/blockdiagram.png" alt="Vending Machine Controller Block Diagram" width="600"/>
+  <a href="images/Vending machine blocks.pdf" target="_blank">
+    <img src="images/crackerjacks_preview.png" alt="Crackerjacks PDF Preview" width="300"/>
+  </a>
+  <br/>
+  <em>Click to view Crackerjacks design insights (PDF)</em>
 </p>
 
-<p align="center"><em>High-level architecture showing APB interface, CDC bridges, FSM, and memory modules.</em></p>
+<p align="center">
+  <a href="images/10 cycles below .pdf" target="_blank">
+    <img src="images/texting_preview.png" alt="Texting While Kids PDF Preview" width="300"/>
+  </a>
+  <br/>
+  <em>Click to view behavioral analysis and timing notes (PDF)</em>
+</p>
+
 
 ## FSM Transaction Flow
 
