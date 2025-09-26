@@ -35,7 +35,7 @@ Clock domain crossing is ensured using dedicated CDC synchronizers and handshake
     <img src="images/below10cycles.png" alt="10-Cycle Constraint Surpassed: Operation Completed in 45ns" width="300"/>
   </a>
   <br/>
-  <em>Click to view behavioral analysis and timing notes (PDF)</em>
+  <em>Click to view 10-Cycle Constraint Surpassed: Operation Completed in 45ns (PDF)</em>
 </p>
 
 
