@@ -6,7 +6,6 @@ module item_memory #(
     input  wire                    clk_fsm,
     input  wire                    rstn,
     
-    // FSM Interface - UNCHANGED signal names
     input  wire                    fsm_read_en,
     input  wire [ADDR_WIDTH-1:0]   fsm_read_addr,
     output reg  [15:0]             fsm_item_cost,
@@ -16,7 +15,6 @@ module item_memory #(
     input  wire                    fsm_update_en,
     input  wire [ADDR_WIDTH-1:0]   fsm_update_addr,
     
-    // Configuration Interface - NEW for APB CDC connection
     input  wire                    cfg_read_en,
     input  wire [ADDR_WIDTH-1:0]   cfg_read_addr,
     output reg  [31:0]             cfg_read_data,
@@ -27,7 +25,6 @@ module item_memory #(
     input  wire [31:0]             cfg_write_data
 );
 
-    // Memory array - same format as before
     reg [31:0] item_memory [0:MAX_ITEMS-1];
     
     // Initialize memory to prevent X states
@@ -53,14 +50,14 @@ module item_memory #(
             fsm_data_valid <= 1'b0;
             cfg_read_valid <= 1'b0;
             
-            // FSM read operation (unchanged logic)
+            // FSM read operation 
             if (fsm_read_en) begin
                 fsm_item_cost      <= item_memory[fsm_read_addr][15:0];   // Cost
                 fsm_item_available <= item_memory[fsm_read_addr][23:16];  // Available count
                 fsm_data_valid     <= 1'b1;
             end
             
-            // FSM update operation (unchanged logic)
+            // FSM update operation 
             if (fsm_update_en) begin
                 item_memory[fsm_update_addr][31:24] <= item_memory[fsm_update_addr][31:24] + 1; // Dispensed count++
                 item_memory[fsm_update_addr][23:16] <= item_memory[fsm_update_addr][23:16] - 1; // Available count--
@@ -80,3 +77,4 @@ module item_memory #(
     end
 
 endmodule
+
