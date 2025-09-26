@@ -51,6 +51,13 @@ The core vending logic, implemented in `main_fsm.v`, follows this transaction se
     * Return Change
     * Transition → **[IDLE]** (Transaction complete)
 
+
+## Schematic
+<p align="center">
+  <img src="images/schematic.jpg" alt="Schematic" width="1100"/>
+</p>
+
+
 ## Module Overview
 - **`vending_top.v`** : Top-level integration of all modules coordinating inputs, FSM, memory, and APB interface.
 - **`main_fsm.v`** : Implements the finite state machine managing vending transactions and dispensing logic.
