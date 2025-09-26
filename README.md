@@ -32,3 +32,14 @@ This controller demonstrates safe CDC design, FSM-based transaction logic, and A
 
 Clone the repository:
 
+## Simulation
+Use ModelSim or Vivado to simulate `vending_top.v`. Testbench included in `tb_vending.v`.
+
+## Build
+To synthesize:
+1. Open project in Vivado
+2. Add all source files
+3. Set `vending_top` as top module
+4. Generate bitstream
+
+
