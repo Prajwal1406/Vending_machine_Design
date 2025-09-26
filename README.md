@@ -22,6 +22,13 @@ The design uses two clock domains:
 Clock domain crossing is ensured using dedicated CDC synchronizers and handshake mechanisms to safely transfer signals and data between these asynchronous domains.
 
 ## High-Level Block Diagram
+## 📄 Embedded PDFs
+
+- [High-Level Block Diagram (Embedded View)](https://abhiram031.github.io/Vending_machine_Design/docs/vendingmachineblockdiagram.html
+)
+- [10-Cycle Constraint Surpassed: Operation Completed in 45ns (Embedded View)](https://abhiram031.github.io/Vending_machine_Design/docs/within10cycle.html)
+
+
 
 ## Additional Documentation
 
