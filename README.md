@@ -87,7 +87,7 @@ This controller demonstrates safe CDC design, FSM-based transaction logic, and A
 Clone the repository:
 
 ## Simulation
-Use ModelSim or Vivado to simulate `vending_top.v`. Testbench included in `tb_vending.v`.
+Use ModelSim or Vivado to simulate `vending_top.v`. Testbench included in `tb_top.v`.
 
 ## Build
 To synthesize:
@@ -96,17 +96,7 @@ To synthesize:
 3. Set `vending_top` as top module
 4. Generate bitstream
 
-## Contributors
 
-This project was developed collaboratively by a dedicated team:
-
-- **Satish Sir** – *Mentor*: Guided timing constraints, FSM architecture, and cross-domain coordination.
-- **Abhiram** – *Team Lead*: Oversaw system integration, APB interface design, and simulation strategy.
-- **Prajwal** – *Design Engineer*: Optimized FSM execution to 45ns, validated waveform timing, and debugged CDC paths.
-- **Sanju** – *Verification Lead*: Built testbenches, ran simulations, and ensured functional correctness across modules.
-- **Harish** – *Documentation & Support*: Assisted with schematic layout, README formatting, and module-level clarity.
-
-Special thanks to **Satish Sir** for mentoring us through the 10-cycle constraint and helping us achieve sub-45ns performance.
 
 
 
