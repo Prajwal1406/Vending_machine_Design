@@ -6,7 +6,7 @@
 
 <p align="center"><em>user interaction with a futuristic vending machine.FSM logic and real-world interface modeled in this project.</em></p>
 
-A dual-clock domain FPGA design for a vending machine controller featuring an APB configuration interface, clock domain crossing (CDC) synchronizers, and a finite state machine (FSM) for transaction management.
+A dual-clock domain design for a vending machine controller featuring an APB configuration interface, clock domain crossing (CDC) synchronizers, and a finite state machine (FSM) for transaction management.
 
 ## Key Features
 
