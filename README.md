@@ -1,4 +1,4 @@
-# FPGA Vending Machine Controller
+# Vending Machine Controller
 
 <p align="center">
   <img src="images/styleimage.png" alt="Stylized vending machine scene" width="500"/>
