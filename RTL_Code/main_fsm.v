@@ -89,9 +89,15 @@ module main_fsm #(
         current_credit <= current_credit + sync_currency_value;
       end
 
-//      if (current_state == STATE_DISPENSE) begin
-//      end
+      // Actions during state transitions (for updates/dispense) are triggered in combinational->registered outputs here:
+      if (current_state == STATE_DISPENSE) begin
+        // handled by combinational logic next_state -> but we also assert update here if required
+        // (mem_update_en asserted in combinational next-state transitions or could be asserted here)
+      end
 
+      // mem_update is asserted when next_state is STATE_DISPENSE in combinational logic below
+      // But we register mem_update_en/mem_update_addr here by reading signals set combinationally (see comb section)
+      // We'll allow the combinational block to assign mem_update_en/reg signals via next_state logic:
     end
   end
   
@@ -114,7 +120,7 @@ module main_fsm #(
             next_state = STATE_WAIT_FOR_MONEY; // memory read request already asserted in sequential when selection occurred
           	end
           else if (sync_currency_valid) begin
-            // No item selected but coin inserted ? return immediately
+            // No item selected but coin inserted → return immediately
             item_dispense_valid <= 1'b1;
             item_dispense      <= 10'd0;       // 0 = no item
             currency_change    <= sync_currency_value;
@@ -134,6 +140,7 @@ module main_fsm #(
           // On entering DISPENSE, perform update and produce outputs
           item_dispense_valid = 1'b1;
           item_dispense = selected_item_reg;
+          // clamp currency_change to 8-bit (or widen as needed)
           if (current_credit > item_cost_reg)
             currency_change = (current_credit > item_cost_reg) ? 
                   (current_credit - item_cost_reg) : 
