@@ -16,8 +16,12 @@ module pulse_sync #(
             sync2 <= 1'b0;
             sync_pulse <= 1'b0;
         end else begin
+            // Use blocking-style semantics by computing new values via temporary regs:
+            // We implement the classic 2-flop synchronizer then derive the one-cycle pulse
+            // from the updated registers in the same cycle.
             sync1 <= async_pulse;
             sync2 <= sync1;
+            // pulse on rising edge of synchronizer: sync1 (current) = 1, sync2 (previous) = 0
             sync_pulse <= sync1 & ~sync2;
         end
     end
