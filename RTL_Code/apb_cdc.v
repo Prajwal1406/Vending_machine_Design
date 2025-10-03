@@ -26,121 +26,125 @@ module apb_cdc #(
 );
 
     // Local item count register (APB domain only)
-    reg [31:0] no_of_items_reg;
+    reg [9:0] no_of_items_reg;
+  	reg valid_data;
 
-    // APB domain registers 
-    reg        slow_mem_req;         
-    reg        slow_write_op;        
-    reg [9:0]  slow_mem_addr;        
-    reg [31:0] slow_mem_wdata;       
-    reg [31:0] slow_mem_rdata;       
+    // APB domain registers - Clear naming
+    reg        apb_start_transaction;     // APB starts a transaction
+    reg        apb_is_write;             // Type of transaction  
+    reg [9:0]  apb_addr;                 // Address from APB
+    reg [31:0] apb_wdata;                // Write data from APB
+    reg [31:0] apb_rdata;                // Read data for APB
 
-    // Fast domain registers 
-    reg        fast_mem_done;        
-    reg [31:0] fast_mem_rdata;       
-    reg        fast_write_op;        
-    reg [9:0]  fast_mem_addr;        
-    reg [31:0] fast_mem_wdata;       
+    // FSM domain registers - Clear naming  
+    reg        fsm_transaction_done;     // FSM finished the work
+    reg [31:0] fsm_rdata;               // Data FSM read from memory
 
-    reg [1:0]  req_sync;             
-    reg [1:0]  done_sync;            
+    // Synchronizers - Shorter, clearer names
+    reg [1:0]  start_sync;              // Synchronize start signal APB->FSM
+    reg [1:0]  done_sync;               // Synchronize done signal FSM->APB
 
+    //=====================================
     // APB Domain Logic (50MHz)
+    //=====================================
     always @(posedge clk_apb or negedge rstn) begin
         if (!rstn) begin
-            prdata           <= 32'b0;
-            pready           <= 1'b0;
-            no_of_items_reg  <= 10'b0;
-            slow_mem_req     <= 1'b0;
-            slow_write_op    <= 1'b0;
-            slow_mem_addr    <= 10'b0;
-            slow_mem_wdata   <= 32'b0;
-            slow_mem_rdata   <= 32'b0;
-            done_sync        <= 2'b0;
+            prdata                <= 32'b0;
+            pready                <= 1'b0;
+            no_of_items_reg       <= 10'b0;
+            apb_start_transaction <= 1'b0;
+            apb_is_write          <= 1'b0;
+            apb_addr              <= 10'b0;
+            apb_wdata             <= 32'b0;
+            apb_rdata             <= 32'b0;
+            done_sync             <= 2'b0;
         end else begin
-            // Synchronize done signal from fast domain
-            done_sync <= {done_sync[0], fast_mem_done};
-
-            // Default: clear pready unless we're completing a transaction
-            pready <= 1'b0;
+            // Synchronize done signal from FSM domain
+            done_sync <= {done_sync[0], fsm_transaction_done};
 
             // APB transaction logic
-            if (psel && !pready && !slow_mem_req) begin
+            if (psel && !pready) begin
                 // Address 0x0000: Local item count register (no CDC needed)
                 if (paddr == 15'h0000) begin
                     if (pwrite) begin
-                        no_of_items_reg <= pwdata[31:0];
+                        no_of_items_reg <= pwdata[9:0];
                     end else begin
-                        prdata <= no_of_items_reg;
+                        prdata <= {22'b0, no_of_items_reg};
                     end
                     pready <= 1'b1;
                 end
-                else begin
-                    slow_mem_req   <= 1'b1;
-                    slow_write_op  <= pwrite;
-                    slow_mem_addr  <= (paddr >> 2) - 1;
-                    slow_mem_wdata <= pwdata;
+                // Other addresses: Memory access via CDC
+                else if (!apb_start_transaction) begin
+                    // Start cross-domain transaction
+                    apb_start_transaction <= 1'b1;
+                    apb_is_write          <= pwrite;
+                    apb_addr              <= (paddr >> 2) - 1;
+                    apb_wdata             <= pwdata;
                 end
-            end
-            else if (slow_mem_req && done_sync[1]) begin
-                prdata       <= slow_mem_rdata;
-                pready       <= 1'b1;
-                slow_mem_req <= 1'b0;
-            end
-            
-            if (done_sync == 2'b01) begin  // Rising edge of done
-                slow_mem_rdata <= fast_mem_rdata;
+                // Wait for done from FSM domain
+                else if (done_sync[1]) begin
+                    // Transaction complete
+                    prdata                <= apb_rdata;
+                    pready                <= 1'b1;
+                    apb_start_transaction <= 1'b0;
+                end else begin
+                  pready <= 1'b0;
+                end
+            end else begin
+                // Clear pready when transaction ends
+                pready <= 1'b0;
             end
         end
     end
 
-    // Fast Domain Logic (100MHz)
+    //=====================================
+    // FSM Domain Logic (100MHz)
+    //=====================================
     always @(posedge clk_fsm or negedge rstn) begin
         if (!rstn) begin
-            cfg_read_en      <= 1'b0;
-            cfg_read_addr    <= 10'b0;
-            cfg_write_en     <= 1'b0;
-            cfg_write_addr   <= 10'b0;
-            cfg_write_data   <= 32'b0;
-            fast_mem_done    <= 1'b0;
-            fast_mem_rdata   <= 32'b0;
-            fast_write_op    <= 1'b0;
-            fast_mem_addr    <= 10'b0;
-            fast_mem_wdata   <= 32'b0;
-            req_sync         <= 2'b0;
+            cfg_read_en           <= 1'b0;
+            cfg_read_addr         <= 10'b0;
+            cfg_write_en          <= 1'b0;
+            cfg_write_addr        <= 10'b0;
+            cfg_write_data        <= 32'b0;
+            fsm_transaction_done  <= 1'b0;
+            fsm_rdata             <= 32'b0;
+            start_sync            <= 2'b0;
         end else begin
-            req_sync <= {req_sync[0], slow_mem_req};
+            // Synchronize start signal from APB domain
+            start_sync <= {start_sync[0], apb_start_transaction};
 
+            // Default values
             cfg_read_en  <= 1'b0;
             cfg_write_en <= 1'b0;
 
-            
-            if (req_sync == 2'b01) begin // Detect new transaction (rising edge)
-                fast_mem_done  <= 1'b0;
-                fast_write_op  <= slow_write_op;
-                fast_mem_addr  <= slow_mem_addr;
-                fast_mem_wdata <= slow_mem_wdata;
+            // Detect new transaction (rising edge)
+            if (start_sync == 2'b01) begin
+                // New transaction arrived - start memory operation
+                fsm_transaction_done <= 1'b0;
                 
-                if (slow_write_op) begin
+                if (apb_is_write) begin
                     // Write operation
                     cfg_write_en   <= 1'b1;
-                    cfg_write_addr <= slow_mem_addr;
-                    cfg_write_data <= slow_mem_wdata;
+                    cfg_write_addr <= apb_addr;
+                    cfg_write_data <= apb_wdata;
+                    // For writes, signal done immediately
+                    fsm_transaction_done <= 1'b1;
                 end else begin
                     // Read operation
                     cfg_read_en   <= 1'b1;
-                    cfg_read_addr <= slow_mem_addr;
+                    cfg_read_addr <= apb_addr;
                 end
             end
-            else if (req_sync == 2'b11 && fast_write_op) begin
-                fast_mem_done <= 1'b1; // Write completed immediately
-            end
+            // For reads, signal done when data is valid
             else if (cfg_read_valid) begin
-                fast_mem_rdata <= cfg_read_data;
-                fast_mem_done  <= 1'b1;
+                fsm_rdata            <= cfg_read_data;
+                apb_rdata            <= cfg_read_data;  // Cross to APB domain
+                fsm_transaction_done <= 1'b1;
             end
-            else if (req_sync == 2'b00) begin
-                fast_mem_done <= 1'b0;
+            // Clear done when start goes away (transaction cleanup)
+            else if (start_sync == 2'b00) begin
+                fsm_transaction_done <= 1'b0;
             end
         end
     end
